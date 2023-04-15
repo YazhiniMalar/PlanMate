@@ -17,17 +17,17 @@ window.addEventListener("scroll", ()=>{
     document.querySelector(".nav_bar").style.display = "none";
 });
 
-function downloadPDF() {
-  const doc = new jsPDF();
-  doc.autoTable({ html: "#timetable" });
-  doc.save("timetable.pdf");
-}
+// function downloadPDF() {
+//   const doc = new jsPDF();
+//   doc.autoTable({ html: "#timetable" });
+//   doc.save("timetable.pdf");
+// }
 
   //halls count
   function allocateStudents() {
     document.getElementById("halltitle").innerText="HALLS GENERATED";
-    let r = parseInt(prompt("Enter the number of rows: "));
-    let c = parseInt(prompt("Enter the number of columns: "));
+    let r = parseInt(prompt("Enter the number of rows in one hall: "));
+    let c = parseInt(prompt("Enter the number of columns in one hall: "));
     let students_per_class = r * c * 2;
     let classCount = Math.ceil(totalstudents / students_per_class);
     let student_in_final_class = totalstudents - (students_per_class * (classCount - 1));
@@ -59,6 +59,7 @@ function addTimetableEntry() {
   const startTime = document.getElementById("start-time").value;
   const endTime = document.getElementById("end-time").value;
   const day = document.getElementById("day").value;
+  const year = document.getElementById("year").value;
   const date = document.getElementById("date").value;
   const students = document.getElementById("students").value;
   // Create new row
@@ -69,12 +70,13 @@ function addTimetableEntry() {
   const dateCell = document.createElement("td");
   const dayCell = document.createElement("td");
   const subjectCell = document.createElement("td");
+  const yearcell = document.createElement("td");
   const startTimeCell = document.createElement("td");
   const endTimeCell = document.createElement("td");
   const total = document.createElement("td");
   
 
-  if (!subject || !startTime || !endTime || !day || !date || !students) {
+  if (!subject || !startTime || !endTime || !day || !date || !students || !year) {
     alert("Please fill all fields");
     return;
   }
@@ -84,6 +86,7 @@ function addTimetableEntry() {
   dateCell.appendChild(document.createTextNode(date));
   dayCell.appendChild(document.createTextNode(day));
   subjectCell.appendChild(document.createTextNode(subject));
+  yearcell.appendChild(document.createTextNode(year));
   startTimeCell.appendChild(document.createTextNode(startTime));
   endTimeCell.appendChild(document.createTextNode(endTime));
   total.appendChild(document.createTextNode(students));
@@ -94,6 +97,7 @@ function addTimetableEntry() {
   row.appendChild(dateCell);
   row.appendChild(dayCell);
   row.appendChild(subjectCell);
+  row.appendChild(yearcell);
   row.appendChild(startTimeCell);
   row.appendChild(endTimeCell);
   row.appendChild(total);
@@ -106,18 +110,18 @@ function addTimetableEntry() {
   const tableBody = document.getElementById("timetable-body");
   tableBody.appendChild(row);
 
-  // Remove the old download button, if any
-  const oldDownloadButton = document.getElementById("download-pdf-button");
-  if (oldDownloadButton) {
-    oldDownloadButton.remove();
-  }
+  // // Remove the old download button, if any
+  // const oldDownloadButton = document.getElementById("download-pdf-button");
+  // if (oldDownloadButton) {
+  //   oldDownloadButton.remove();
+  // }
 
-  // Add Download PDF button
-  const downloadButton = document.createElement("button");
-  downloadButton.id = "download-pdf-button";
-  downloadButton.innerHTML = "Download PDF";
-  downloadButton.addEventListener("click", downloadPDF);
-  tableBody.appendChild(downloadButton);
+  // // Add Download PDF button
+  // const downloadButton = document.createElement("button");
+  // downloadButton.id = "download-pdf-button";
+  // downloadButton.innerHTML = "Download PDF";
+  // downloadButton.addEventListener("click", downloadPDF);
+  // tableBody.appendChild(downloadButton);
 
 
   // Remove the old halls button, if any
@@ -127,9 +131,10 @@ function addTimetableEntry() {
   }
 
   // Add HALLS button
+  const table = document.querySelector(".container");
   const hallButton = document.createElement("button");
   hallButton.id = "gen-halls-button";
   hallButton.innerHTML = `<a href="#halltitle" style="color: white;">Generate Halls<a>`;
   hallButton.addEventListener("click", allocateStudents);
-  tableBody.appendChild(hallButton);
+  table.appendChild(hallButton);
 }
