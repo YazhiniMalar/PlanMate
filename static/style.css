@@ -70,7 +70,7 @@ body {
 	left: 0;
 	pointer-events: none;
 	width: 100vw;
-	margin-top: 58vh;
+	margin-top: 60vh;
   }
   p{
 	color: white;
@@ -81,7 +81,7 @@ body {
 	font-family: cursive;
   }
   #layer2{
-	margin-top: 54vh;
+	margin-top: 56vh;
   }
   #layer4{
 	width: 100px;
