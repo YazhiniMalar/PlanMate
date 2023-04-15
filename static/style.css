@@ -93,6 +93,12 @@ body {
   #total-students{
        margin: 20px;
 }
+h4{
+	margin: 50px;
+	font-size: 25px;
+	line-height: 2em;
+	letter-spacing: 2px;
+}
   form {
 	display: flex;
 	flex-direction: column;
@@ -162,7 +168,6 @@ body {
 		font-size: 20px;
 		cursor: pointer;
   }
-
   .container {
 	display: flex;
 	flex-direction: column;
