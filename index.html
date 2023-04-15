@@ -4,8 +4,13 @@
     <meta charset="UTF-8" />
     <title>PLAN MATE</title>
     <link rel="stylesheet" href="./static/style.css" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.es.js" integrity="sha512-VTufZOUx+Gc0N4JkluA0ZkVs2x4wfDI3p60gRWpHT761kMQ+hiNlYI+8MGXbLO48ymPKAeRa1wsEm3BIaxSEvw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+<script src="./static/script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.js"></script>
   </head>
   <body>
     <section class="nav_bar">
@@ -21,7 +26,7 @@
   <img id="layer2" src="./static/assets/wave1.svg" alt="">
   <img id="layer3" src="./static/assets/wave2.svg" alt="">
     </div>
-    <section class="table-section">
+    <section class="table-section" id="front">
       <h4>Enter the following details for generating the Halls and Seating arrangements.<br>Make sure you enter for each date and generate separately!</h4>
     <form id="timetable-form">
       <label for="subject">Subject:</label>
@@ -62,7 +67,7 @@
       <a href=#tablescroll><button type="button" onclick="addTimetableEntry()">Add Entry</button></a>
     </form>
     
-    <div class="container">
+    <div class="container" id="pdfprint">
       <h1 id="tablescroll">TIME-TABLE</h1>
       <table id="timetable">
         <thead>
@@ -81,15 +86,33 @@
         </tbody>
       </table>
       <h3 id="total-students"></h3>
-    </div>
     <div id="halls">
       <h1 id="halltitle"></h1>
       <h1 id="totalhall"></h1>
     </div>
+  </div>
   </section>
+  <div class="pdfbtn">
+    <button class="btn btn-primary" id="download">Download PDF</button>
+  </div>
   <section>
     <h4>TCE FLOOR AND HALLS WITH ROWS AND COLUMNS</h4>
     <img class="Floor" src="./static/assets/floorhalls.jpg" alt="Floor Halls">
+  </section>
+  <section>
+    <div>
+      <h4 class="seatsintru">Enter the following details in order:</h4><br>
+      <ul class="seatsintrulist">
+        <li>Enter the No. of Rows. //For eg: 7</li>
+        <li>Enter the No. of Columns. //For eg: 5</li>
+        <li>Enter the Courses. //For eg: 18EC210 18EC340 18EC560</li>
+        <li>Enter Number of Students for each Course. //For eg: 50 46 58</li>
+        <li>Enter the starting Register Number for each course. //For eg: 18D001 19D001 20D001</li>
+      </ul>
+      <div class="apdfbtn">
+      <a href="./seats.html"><button class="btn">Generate Seating Allotment</button></a>
+    </div>
+    </div>
   </section>
 <footer>
   <nav class="bottom">
@@ -97,6 +120,7 @@
       <li>
         <a href="#" target="_blank">Privacy Policy</a>
         <a href="#" target="_blank">Terms of Service</a>
+        <a href="#" target="_blank">About</a>
       </li>
     </ul>
   </nav>

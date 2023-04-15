@@ -17,11 +17,20 @@ window.addEventListener("scroll", ()=>{
     document.querySelector(".nav_bar").style.display = "none";
 });
 
-// function downloadPDF() {
-//   const doc = new jsPDF();
-//   doc.autoTable({ html: "#timetable" });
-//   doc.save("timetable.pdf");
-// }
+window.onload = function () {
+  document.getElementById("download")
+      .addEventListener("click", () => {
+          const invoice = this.document.getElementById("pdfprint");
+          var opt = {
+              margin: 1,
+              filename: 'halls.pdf',
+              image: { type: 'jpeg', quality: 0.98 },
+              html2canvas: { scale: 1 },
+              jsPDF: { unit: 'in', format: 'letter', orientation: 'landscape' }
+          };
+          html2pdf().from(invoice).set(opt).save();
+      })
+}
 
   //halls count
   function allocateStudents() {
@@ -49,6 +58,7 @@ window.addEventListener("scroll", ()=>{
     resultHeading.innerHTML = resultText;
     document.getElementById("halls").appendChild(resultHeading);
     document.getElementById("totalhall").innerText=`Total Halls Needed: ${classCount}`;
+    //add seating arrangemebt function here
   }
   
 
@@ -110,20 +120,7 @@ function addTimetableEntry() {
   const tableBody = document.getElementById("timetable-body");
   tableBody.appendChild(row);
 
-  // // Remove the old download button, if any
-  // const oldDownloadButton = document.getElementById("download-pdf-button");
-  // if (oldDownloadButton) {
-  //   oldDownloadButton.remove();
-  // }
-
-  // // Add Download PDF button
-  // const downloadButton = document.createElement("button");
-  // downloadButton.id = "download-pdf-button";
-  // downloadButton.innerHTML = "Download PDF";
-  // downloadButton.addEventListener("click", downloadPDF);
-  // tableBody.appendChild(downloadButton);
-
-
+  const table = document.querySelector(".container");
   // Remove the old halls button, if any
   const oldHallButton = document.getElementById("gen-halls-button");
   if (oldHallButton) {
@@ -131,7 +128,6 @@ function addTimetableEntry() {
   }
 
   // Add HALLS button
-  const table = document.querySelector(".container");
   const hallButton = document.createElement("button");
   hallButton.id = "gen-halls-button";
   hallButton.innerHTML = `<a href="#halltitle" style="color: white;">Generate Halls<a>`;
