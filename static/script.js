@@ -37,7 +37,7 @@ window.onload = function () {
     document.getElementById("halltitle").innerText="HALLS GENERATED";
     let r = parseInt(prompt("Enter the number of rows in one hall: "));
     let c = parseInt(prompt("Enter the number of columns in one hall: "));
-    let students_per_class = r * c * 2;
+    let students_per_class = r * c;
     let classCount = Math.ceil(totalstudents / students_per_class);
     let student_in_final_class = totalstudents - (students_per_class * (classCount - 1));
     if (student_in_final_class > students_per_class) {
